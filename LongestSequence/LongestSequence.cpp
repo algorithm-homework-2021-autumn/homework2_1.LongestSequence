@@ -6,9 +6,20 @@
 #include <string>
 #include <algorithm>
 
-const int LCS_maxn = 4;
-const int string_maxn = 100010;
-const int LIS_maxn = 2;
+const int LCS_maxn = 4; //求最长公共子序列的数据组数
+const int string_maxn = 100010; //每组数据的最大长度
+const int LIS_maxn = 2; // 最长递减子序列的数据组数
+inline int mymax(int x, int y); //求两值中的较大值，手写的max函数
+void get_LCS_data(char** a); //从txt文件中读入求最长公共子序列的数据
+int LCSdfs(char* a, char* b, int i, int j, int** f); //递归找到a和b的最长公共子序列，数组类型为char
+void LCS(char* a, char* b, int** f); //输入找最长公共子序列的两个序列a、b和动态规划所用的数组f，在该函数中输出对两个序列查找的结果。
+void do_LCS(); //增强程序可读性设置的LCS操作函数
+bool LIScmp(int x, int y); //将序列逆序排列，求LIS前的排序用cmp
+int LISdfs(int* a, int* b, int i, int j, int** f); //递归找到a和b的最长公共子序列，数组类型为int
+void get_LIS_data(int** a, int* siz); //从txt文件中读入求最长递减子序列的数据
+void LIS(int* a, int siz, int** f); ////输入找最长递减子序列的序列a，序列长度siz和动态规划所用的数组f，在该函数中输出对两个序列查找的结果。
+void do_LIS(); //增强程序可读性设置的LIS操作函数
+
 inline int mymax(int x, int y) { return x > y ? x : y; }
 void get_LCS_data(char **a) {
     std::ifstream LCSData;
@@ -213,5 +224,6 @@ int main()
     do_LCS();
     
     do_LIS();
+
     return 0;
 }
